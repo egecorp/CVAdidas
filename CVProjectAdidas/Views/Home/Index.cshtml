@@ -1,0 +1,152 @@
+﻿@*Не используем Layout, т.к. таблица одна и нет смысла усложнять код*@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тестовое задание</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+            @if (ViewBag.LastError == null)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">Выберите страну</div>
+                        <div class="col-sm">
+                            <select id="Teams_Table_Country_Select">
+                                <option></option>
+                                @foreach (Country c in ViewBag.Countries)
+                                {
+                                    <option value="@Html.Raw(c.code)">@Html.Raw(c.country) </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm"> и турнир</div>
+                        <div class="col-sm">
+                            <select id="Teams_Table_League_Select">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="container">
+                    @Html.Raw(ViewBag.LastError)
+                </div>
+            }
+            <div class="table-responsive-xl">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Наименование</th>
+                            <th scope="col">Подробнее</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Teams_Table_Body">
+                        <tr>
+                            <th colspan="3" scope="row">Пожалуйста, выберите страну и лигу...</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="Team_Card_Modal">
+        <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Данные о команде</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" id="Team_Card_logo" src="/img/noimage.svg" alt="Отсутствует изображение">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_name'>Команда</label>
+                                    <input id='Team_Card_name' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_founded'>Основана</label>
+                                    <input id='Team_Card_founded' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_country'>Страна</label>
+                                    <input id='Team_Card_country' class='form-control' readonly='readonly'>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm">
+
+                                <div class="form-group">
+                                    <label for='Team_Card_venue_name'>Стадион</label>
+                                    <input id='Team_Card_venue_name' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_venue_surface'>Покрытие стадиона</label>
+                                    <input id='Team_Card_venue_surface' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_venue_city'>Город стадиона</label>
+                                    <input id='Team_Card_venue_city' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_venue_address'>Адрес стадиона</label>
+                                    <input id='Team_Card_venue_address' class='form-control' readonly='readonly'>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for='Team_Card_venue_capacity'>Вместимость</label>
+                                    <input id='Team_Card_venue_capacity' class='form-control' readonly='readonly'>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/team.js" asp-append-version="true"></script>
+    <script src="~/js/server.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+</body>
+</html>
+
+
+

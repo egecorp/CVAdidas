@@ -1,0 +1,12 @@
+{
+
+  "GetCountry": "https://www.api-football.com/demo/v2/countries",
+
+  "GetLeaguas": "https://www.api-football.com/demo/v2/leagues/country/",
+
+  "GetTeams": "https://www.api-football.com/demo/v2/teams/league/",
+
+  "Token": "f80f2e38b410781f1b31b533540a5d412"
+
+}
+ 
